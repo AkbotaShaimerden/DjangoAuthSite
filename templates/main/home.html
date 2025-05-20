@@ -1,0 +1,913 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Tooplate">
+        <title>Moso Interior - HTML CSS Template</title>
+
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/tooplate-moso-interior.css' %}" rel="stylesheet">
+
+        <!-- Inline CSS for Dark/Light Mode and Chatbot -->
+        <style>
+            /* Light Mode (Default) */
+            body.light-mode {
+                background-color: #fff;
+                color: #333;
+            }
+
+            body.light-mode .navbar {
+                background-color: #f8f9fa !important;
+            }
+
+            body.light-mode .section-small-title {
+                color: #666;
+            }
+
+            body.light-mode .hero-section-text h1 {
+                color: #000;
+            }
+
+            body.light-mode .custom-block {
+                background-color: #fff;
+            }
+
+            body.light-mode .custom-block h3,
+            body.light-mode .custom-block p {
+                color: #333;
+            }
+
+            body.light-mode .site-footer {
+                background-color: #36363e;
+            }
+
+            body.light-mode .site-footer h3,
+            body.light-mode .site-footer p,
+            body.light-mode .site-footer a {
+                color: #fff;
+            }
+
+            /* Dark Mode */
+            body.dark-mode {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .navbar {
+                background-color: #2c2c2c !important;
+            }
+
+            body.dark-mode .navbar .navbar-brand,
+            body.dark-mode .navbar .nav-link {
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .section-small-title {
+                color: #999;
+            }
+
+            body.dark-mode .hero-section-text h1 {
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .custom-block {
+                background-color: #2c2c2c;
+            }
+
+            body.dark-mode .custom-block h3,
+            body.dark-mode .custom-block p {
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .site-footer {
+                background-color: #1a1a1a;
+            }
+
+            body.dark-mode .site-footer h3,
+            body.dark-mode .site-footer p,
+            body.dark-mode .site-footer a {
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .form-control {
+                background-color: #333;
+                color: #e0e0e0;
+                border-color: #555;
+            }
+
+            body.dark-mode .form-control::placeholder {
+                color: #aaa;
+            }
+
+            body.dark-mode .contact-section {
+                background-color: #333;
+            }
+
+             body.dark-mode .contact-section::placeholder {
+                color: #ffd603;
+            }
+
+            /* Chatbot Styles */
+            .chatbot-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                background-color: #000;
+                color: #fff;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+
+            .chatbot-button img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .chatbot-container {
+                position: fixed;
+                bottom: 90px;
+                right: 20px;
+                width: 350px;
+                height: 500px;
+                background-color: #fff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                display: none;
+                z-index: 1000;
+                overflow: hidden;
+            }
+
+            .chatbot-container iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            .chatbot-container.active {
+                display: block;
+            }
+
+            /* Dark Mode for Chatbot */
+            body.dark-mode .chatbot-container {
+                background-color: #2c2c2c;
+            }
+
+            body.dark-mode .chatbot-button {
+                background-color: #555;
+            }
+
+            /* Mode Toggle Button */
+            .mode-toggle {
+                cursor: pointer;
+                font-size: 1.2rem;
+                margin-left: 10px;
+            }
+
+
+
+           /* Викторина бөлімі */
+.quiz-section {
+    background-color: #f9f9f9;
+}
+body.dark-mode .quiz-section {
+    background-color: #2c2c2c;
+}
+.quiz-section .custom-block {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+body.dark-mode .quiz-section .custom-block {
+    background-color: #333;
+}
+.quiz-section .form-select,
+.quiz-section .form-control,
+.quiz-section .form-check-input {
+    background-color: #fff;
+    color: #333;
+}
+body.dark-mode .quiz-section .form-select,
+body.dark-mode .quiz-section .form-control,
+body.dark-mode .quiz-section .form-check-input {
+    background-color: #444;
+    color: #e0e0e0;
+    border-color: #555;
+}
+.quiz-section .form-control::placeholder {
+    color: #aaa;
+}
+body.dark-mode .quiz-section .form-control::placeholder {
+    color: #999;
+}
+.quiz-section .btn.custom-btn {
+    background-color: #f65129;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+.quiz-section .btn.custom-btn:hover {
+    background-color: #d94420;
+}
+body.dark-mode .quiz-section .btn.custom-btn {
+    background-color: #ff6f47;
+
+    #result {
+    font-weight: normal;
+}
+}
+
+
+
+
+
+        </style>
+    </head>
+
+    <body class="light-mode">
+        <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">Moso <span class="tooplate-red">Inter</span><span class="tooplate-green">ior</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_1">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_2">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle click-scroll" href="#section_3" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                 <li><a class="dropdown-item" href="{% url 'shop_listing' %}">Shop Listing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'shop_detail' %}">Shop Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">Quiz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Logout ({{ user.username }})</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <span class="nav-link mode-toggle" id="modeToggle">
+                                <i class="bi bi-moon-fill"></i>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <section class="hero-section hero-slide d-flex justify-content-center align-items-center" style="background-image: url('/static/images/slideshow/white-wall-living-room-have-sofa-decoration-3d-rendering.jpg'); background-size: cover; background-position: center; " id="section_1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-12 text-center mx-auto">
+                            <div class="hero-section-text">
+                                <small class="section-small-title">Welcome to Moso Interior <i class="hero-icon bi-house"></i></small>
+                                <h1 class="hero-title text-black mt-2 mb-4">Decorate a beautiful interior for your space</h1>
+                                <form class="custom-form hero-form" action="#" method="get" role="form">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-6 col-12">
+                                            <div class="input-group align-items-center">
+                                                <label for="product-name">Product</label>
+                                                <input type="text" name="product-name" id="product-name" class="form-control" placeholder="Bathroom, Living Room..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-md-6 col-12">
+                                            <div class="input-group align-items-center">
+                                                <label for="price-range">Price</label>
+                                                <select name="price-range" class="form-select form-control" id="price-range" aria-label="Default select example">
+                                                    <option value="500" selected>$500 to $990</option>
+                                                    <option value="1000">$1,000 - 2,900</option>
+                                                    <option value="3000">$3,000 - 5,000</option>
+                                                    <option value="5000">$5,000 - 10,000</option>
+                                                    <option value="11000">$11,000 - 25,000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-6 col-12">
+                                            <button type="submit" class="form-control">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="hero-btn d-flex justify-content-center align-items-center">
+                                    <a class="bi-arrow-down hero-btn-link smoothscroll" href="#section_2"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section section-padding" id="section_2">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-12">
+                            <small class="section-small-title">Our Story</small>
+                            <h2 class="mt-2 mb-4"><span class="text-muted">Introducing</span> Moso</h2>
+                            <h4 class="text-muted mb-3">Since 1986, enhancing spaces has been our primary mission.</h4>
+                            <p>By combining quality and elegance in the world of interior design, we have been taking home and office interiors to a whole new level. Our years of experience and creative vision make us stand out in the industry.
+                               Moso Interior is not just a studio — it’s a source of inspiration. We don’t just design spaces, we strive to make them comfortable, beautiful, and functional for people.</p>
+                        </div>
+                        <div class="col-lg-3 col-md-5 col-5 mx-lg-auto">
+                            <img src="{% static 'images/sharing-design-ideas-with-family.jpg' %}" class="about-image about-image-small img-fluid" alt="">
+                        </div>
+                        <div class="col-lg-4 col-md-7 col-7">
+                            <img src="{% static 'images/living-room-interior-wall-mockup-warm-tones-with-leather-sofa-which-is-kitchen-3d-rendering.jpg' %}" class="about-image img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-12">
+                            <div class="custom-block featured-custom-block">
+                                <h2 class="mt-2 mb-4">Opening Hours</h2>
+                                <div class="d-flex">
+                                    <i class="featured-ic+Oon bi-clock me-3"></i>
+                                    <div>
+                                        <p class="mb-2">Mon - Friday ~ <strong class="d-inline">8:00 AM - 6:00 PM</strong></p>
+                                        <p class="mb-2">Saturday ~ <strong class="d-inline">10:00 AM - 10:00 PM</strong></p>
+                                        <p>Sunday ~ Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="shop-section section-padding" id="section_3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <small class="section-small-title">Moso Design Shop</small>
+                            <h2 class="mt-2 mb-4"><span class="tooplate-red">Interior</span> Products</h2>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="shop-thumb">
+                                <div class="shop-image-wrap">
+                                    <a href="/templates/main/shop-detail.html">
+                                        <img src="{% static 'images/shop/minimal-bathroom-interior-design-with-wooden-furniture.jpg' %}" class="shop-image img-fluid" alt="">
+                                    </a>
+                                    <div class="shop-icons-wrap">
+                                        <div class="shop-icons d-flex flex-column align-items-center">
+                                            <a href="#" class="shop-icon bi-heart"></a>
+                                            <a href="#" class="shop-icon bi-bookmark"></a>
+                                        </div>
+                                        <p class="shop-pricing mb-0 mt-3">
+                                            <span class="badge custom-badge">$3,600</span>
+                                        </p>
+                                    </div>
+                                    <div class="shop-btn-wrap">
+                                        <a href="/templates/main/shop-detail.html" class="shop-btn custom-btn btn d-flex align-items-center">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="shop-body">
+                                    <h4>Bathroom</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="shop-thumb">
+                                <div class="shop-image-wrap">
+                                    <a href="/templates/main/shop-detail.html">
+                                        <img src="{% static 'images/shop/mock-up-poster-modern-dining-room-interior-design-with-white-empty-wall.jpg' %}" class="shop-image img-fluid" alt="">
+                                    </a>
+                                    <div class="shop-icons-wrap">
+                                        <div class="shop-icons d-flex flex-column align-items-center">
+                                            <a href="#" class="shop-icon bi-heart"></a>
+                                            <a href="#" class="shop-icon bi-bookmark"></a>
+                                        </div>
+                                        <p class="shop-pricing mb-0 mt-3">
+                                            <span class="badge custom-badge">$6,400</span>
+                                        </p>
+                                    </div>
+                                    <div class="shop-btn-wrap">
+                                        <a href="/templates/main/shop-detail.html" class="shop-btn custom-btn btn d-flex align-items-center">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="shop-body">
+                                    <h4>Dining</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="shop-thumb">
+                                <div class="shop-image-wrap">
+                                    <a href="/templates/main/shop-detail.html">
+                                        <img src="{% static 'images/shop/green-sofa-white-living-room-with-blank-table-mockup.jpg' %}" class="shop-image img-fluid" alt="">
+                                    </a>
+                                    <div class="shop-icons-wrap">
+                                        <div class="shop-icons d-flex flex-column align-items-center">
+                                            <a href="#" class="shop-icon bi-heart"></a>
+                                            <a href="#" class="shop-icon bi-bookmark"></a>
+                                        </div>
+                                        <p class="shop-pricing mb-0 mt-3">
+                                            <span class="badge custom-badge">$2,400</span>
+                                        </p>
+                                    </div>
+                                    <div class="shop-btn-wrap">
+                                        <a href="/templates/main/shop-detail.html" class="shop-btn custom-btn btn d-flex align-items-center">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="shop-body">
+                                    <h4>Living Room</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="shop-thumb">
+                                <div class="shop-image-wrap">
+                                    <a href="/templates/main/shop-detail.html">
+                                        <img src="{% static 'images/shop/concept-home-cooking-with-female-chef.jpg' %}" class="shop-image img-fluid" alt="">
+                                    </a>
+                                    <div class="shop-icons-wrap">
+                                        <div class="shop-icons d-flex flex-column align-items-center">
+                                            <a href="#" class="shop-icon bi-heart"></a>
+                                            <a href="#" class="shop-icon bi-bookmark"></a>
+                                        </div>
+                                        <p class="shop-pricing mb-0 mt-3">
+                                            <span class="badge custom-badge">$3,800</span>
+                                        </p>
+                                    </div>
+                                    <div class="shop-btn-wrap">
+                                        <a href="/templates/main/shop-detail.html" class="shop-btn custom-btn btn d-flex align-items-center">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="shop-body">
+                                    <h4>Chef Kitchen</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="shop-thumb">
+                                <div class="shop-image-wrap">
+                                    <a href="/templates/main/shop-detail.html">
+                                        <img src="{% static 'images/shop/childrens-bed-nursery-cot-velvet-childrens-room.jpg' %}" class="shop-image img-fluid" alt="">
+                                    </a>
+                                    <div class="shop-icons-wrap">
+                                        <div class="shop-icons d-flex flex-column align-items-center">
+                                            <a href="#" class="shop-icon bi-heart"></a>
+                                            <a href="#" class="shop-icon bi-bookmark"></a>
+                                        </div>
+                                        <p class="shop-pricing mb-0 mt-3">
+                                            <span class="badge custom-badge">$850</span>
+                                        </p>
+                                    </div>
+                                    <div class="shop-btn-wrap">
+                                        <a href="/templates/main/shop-detail.html" class="shop-btn custom-btn btn d-flex align-items-center">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="shop-body">
+                                    <h4>Childrens Bedroom</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+<!-- Жаңа викторина бөлімі -->
+<section class="quiz-section section-padding" id="section_4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <small class="section-small-title">Біліміңізді Тексеріңіз</small>
+                <h2 class="mt-2 mb-4">Үй Интерьері Тақырыбындағы Викторина</h2>
+            </div>
+            <div class="col-lg-8 col-12 mx-auto">
+                <div class="custom-block" style="padding: 30px; border-radius: 10px;">
+                    <form id="quizForm" class="custom-form">
+                        <div class="mb-4">
+                            <p class="mb-2">1. Жатын бөлмеңіздің дизайнында қандай атмосфераны қалайсыз?</p>
+                            <select id="q1" class="form-select">
+                                <option value="классикалық">Жайлы және жылы</option>
+                                <option value="минимализм">Қарапайым және функционалды</option>
+                                <option value="заманауи">Технологиялық және заманауи</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">2. Қонақ бөлмеңізде қандай декор элементін көргіңіз келеді?</p>
+                            <div class="form-check">
+                                <input type="radio" name="q2" value="классикалық" class="form-check-input" id="q2_antique">
+                                <label class="form-check-label" for="q2_antique">Антикварлық жиһаз</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q2" value="заманауи" class="form-check-input" id="q2_geometric">
+                                <label class="form-check-label" for="q2_geometric">Геометриялық пішіндер</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q2" value="минимализм" class="form-check-input" id="q2_no_decor">
+                                <label class="form-check-label" for="q2_no_decor">Ешқандай декор</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">3. Сіздің арманыңыздағы бөлме қандай түстермен безендіріледі?</p>
+                            <input type="text" id="q3" class="form-control" placeholder="Мысалы: пастельді, монохромды, жарқын">
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">4. Ас үй дизайнында қандай материалды артық көресіз?</p>
+                            <select id="q4" class="form-select">
+                                <option value="классикалық">Ағаш және табиғи текстуралар</option>
+                                <option value="заманауи">Хром және шыны</option>
+                                <option value="минимализм">Тегіс және қарапайым беттер</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">5. Жұмыс бөлмеңізде қандай жиһаз стилін қалайсыз?</p>
+                            <div class="form-check">
+                                <input type="radio" name="q5" value="классикалық" class="form-check-input" id="q5_wood">
+                                <label class="form-check-label" for="q5_wood">Ою-өрнекті ағаш жиһаз</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q5" value="минимализм" class="form-check-input" id="q5_modular">
+                                <label class="form-check-label" for="q5_modular">Модульді және қарапайым</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q5" value="заманауи" class="form-check-input" id="q5_metal">
+                                <label class="form-check-label" for="q5_metal">Металл және шыны элементтер</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">6. Бөлмеңізде қандай жарықтандыру түрін артық көресіз?</p>
+                            <select id="q6" class="form-select">
+                                <option value="классикалық">Жылы шамдар және люстралар</option>
+                                <option value="заманауи">Жарық диодты жолақтар</option>
+                                <option value="минимализм">Минималды және жасырын жарық</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">7. Сіздің идеалды бөлмеңізде қандай текстиль қолданылады?</p>
+                            <input type="text" id="q7" class="form-control" placeholder="Мысалы: барқыт, мақта, синтетика">
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">8. Ванна бөлмеңізде қандай дизайн элементін қалайсыз?</p>
+                            <div class="form-check">
+                                <input type="radio" name="q8" value="классикалық" class="form-check-input" id="q8_marble">
+                                <label class="form-check-label" for="q8_marble">Мрамор және классикалық плиткалар</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q8" value="заманауи" class="form-check-input" id="q8_glass">
+                                <label class="form-check-label" for="q8_glass">Шыны және хром душ</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="q8" value="минимализм" class="form-check-input" id="q8_simple">
+                                <label class="form-check-label" for="q8_simple">Қарапайым және функционалды плиткалар</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">9. Балкон немесе терраса дизайнында қандай стильді ұнатасыз?</p>
+                            <select id="q9" class="form-select">
+                                <option value="классикалық">Ағаш жиһаз және өсімдіктер</option>
+                                <option value="заманауи">Заманауи шезлонгтар және жарық</option>
+                                <option value="минимализм">Минималды және қарапайым жиһаз</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-2">10. Сіздің бөлмеңіздің ерекше элементі не болар еді?</p>
+                            <input type="text" id="q10" class="form-control" placeholder="Мысалы: антикварлық зат, смарт-гаджет, ештеңе">
+                        </div>
+
+                        <button type="button" class="form-control btn custom-btn" onclick="calculateScore()">Жауап беру</button>
+                    </form>
+                    <h3 id="result" class="mt-4"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+            <section class="contact-section" id="section_5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f9f9f9" fill-opacity="1" d="M0,96L40,117.3C80,139,160,181,240,186.7C320,192,400,160,480,149.3C560,139,640,149,720,176C800,203,880,245,960,250.7C1040,256,1120,224,1200,229.3C1280,235,1360,277,1400,298.7L1440,320L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <small class="section-small-title">Ask anything.</small>
+                            <h2 class="mb-4">Say Hello</h2>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <form class="custom-form contact-form" action="#" method="post" role="form">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="input-group align-items-center">
+                                            <label for="first-name">First Name</label>
+                                            <input type="text" name="first-name" id="first-name" class="form-control" placeholder="Jack" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="input-group align-items-center">
+                                            <label for="last-name">Last Name</label>
+                                            <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Doe" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group align-items-center">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Jackdoe@gmail.com" required>
+                                </div>
+                                <div class="input-group textarea-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="What can we help you?"></textarea>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <button type="submit" class="form-control">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
+    <div class="custom-block" style="background-color:#ffd74f">
+        <h3 class="mb-2" style="color: black" >Store</h3>
+        <p class="mb-2" >
+            <i class="contact-icon bi-geo-alt me-1" ></i>
+            <span style="color: black">102 Utah Road, Berlin, Germany </span>
+
+        </p>
+        <h3 class="mt-3 mb-2" style="color: black">Contact Info</h3>
+        <div class="d-flex flex-wrap">
+            <p class="mb-2 me-4" >
+                <i class="contact-icon bi-telephone me-1"></i>
+                <a href="tel: 090-080-0760" >090-080-0760</a>
+            </p>
+            <p style="color: #f65129;">
+                <i class="contact-icon bi-envelope me-1"></i>
+                <a href="mailto:info@company.com" >info@company.com</a>
+            </p>
+        </div>
+        <iframe class="google-map mt-2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4800.184803804974!2d-0.10174304922518053!3d51.5087879746898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605f6fc62fa3d%3A0xc5a39e7cf4e3a9a4!2sTate%20Modern%20Garden!5e1!3m2!1sen!2smm!4v1679331839559!5m2!1sen!2smm" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+                    </div>
+                </div>
+            </section>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#36363e" fill-opacity="1" d="M0,96L40,117.3C80,139,160,181,240,186.7C320,192,400,160,480,149.3C560,139,640,149,720,176C800,203,880,245,960,250.7C1040,256,1120,224,1200,229.3C1280,235,1360,277,1400,298.7L1440,320L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+        </main>
+
+        <footer class="site-footer section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-12 mb-3">
+                        <h3><a href="{% url 'home' %}" class="custom-link mb-1">Moso Interior</a></h3>
+                        <p class="text-white">Since 1986, We crafted interior products for better spaces</p>
+                        <p class="text-white"><a href="https://www.tooplate.com" target="_parent">Web Design: Tooplate</a></p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">
+                        <h3 class="text-white mb-3">Store</h3>
+                        <p class="text-white mt-2"><i class="bi-geo-alt"></i> Berlin, Germany</p>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-12 mb-3">
+                        <h3 class="text-white mb-3">Contact Info</h3>
+                        <p class="text-white mb-1">
+                            <i class="bi-telephone me-1"></i>
+                            <a href="tel: 090-080-0760" class="text-white">090-080-0760</a>
+                        </p>
+                        <p class="text-white mb-0">
+                            <i class="bi-envelope me-1"></i>
+                            <a href="mailto:info@company.com" class="text-white">info@company.com</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-7 copyright-text-wrap col-12 d-flex flex-wrap align-items-center mt-4 ms-auto">
+                        <p class="copyright-text mb-0 me-4">Copyright © Moso Interior 2048</p>
+                        <ul class="social-icon">
+                            <li class="social-icon-item"><a href="#" class="social-icon-link social-icon-twitter bi-twitter"></a></li>
+                            <li class="social-icon-item"><a href="#" class="social-icon-link social-icon-facebook bi-facebook"></a></li>
+                            <li class="social-icon-item"><a href="#" class="social-icon-link social-icon-instagram bi-instagram"></a></li>
+                            <li class="social-icon-item"><a href="#" class="social-icon-link social-icon-pinterest bi-pinterest"></a></li>
+                            <li class="social-icon-item"><a href="#" class="social-icon-link social-icon-whatsapp bi-whatsapp"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Chatbot Button and Container -->
+        <div class="chatbot-button" id="chatbotButton">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/%3E%3Cpath d='M9 11l2-2 2 2 2-2-2-2-2 2-2-2z'/%3E%3C/svg%3E" alt="Chat Icon">
+        </div>
+
+        <div class="chatbot-container" id="chatbotContainer">
+            <iframe
+                src="https://www.chatbase.co/chatbot-iframe/SnT4qOrCRPVQuE1Ne7_tI"
+            ></iframe>
+        </div>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/click-scroll.js' %}"></script>
+        <script src="{% static 'js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <!-- Inline JavaScript for Chatbot Toggle and Mode Switching -->
+        <script>
+            // Chatbot Toggle
+            const chatbotButton = document.getElementById('chatbotButton');
+            const chatbotContainer = document.getElementById('chatbotContainer');
+
+            chatbotButton.addEventListener('click', () => {
+                chatbotContainer.classList.toggle('active');
+            });
+
+            // Mode Toggle
+            const modeToggle = document.getElementById('modeToggle');
+            const body = document.body;
+
+            // Load the saved mode from localStorage
+            const savedMode = localStorage.getItem('themeMode');
+            if (savedMode) {
+                body.classList.remove('light-mode', 'dark-mode');
+                body.classList.add(savedMode);
+                modeToggle.innerHTML = savedMode === 'dark-mode' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+            }
+
+            modeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    modeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+                    localStorage.setItem('themeMode', 'dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    modeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+                    localStorage.setItem('themeMode', 'light-mode');
+                }
+            });
+
+        </script>
+<script>
+function calculateScore() {
+    let preferences = {
+        классикалық: 0,
+        минимализм: 0,
+        заманауи: 0
+    };
+
+    // Сұрақ 1
+    let q1 = document.getElementById("q1").value;
+    if (q1) preferences[q1]++;
+
+    // Сұрақ 2
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    if (q2) preferences[q2.value]++;
+
+    // Сұрақ 3 (түстер бойынша талдау)
+    let q3 = document.getElementById("q3").value.toLowerCase();
+    if (q3.includes("пастель") || q3.includes("жұмсақ") || q3.includes("жылы")) {
+        preferences["классикалық"]++;
+    } else if (q3.includes("монохром") || q3.includes("ақ") || q3.includes("сұр")) {
+        preferences["минимализм"]++;
+    } else if (q3.includes("жарқын") || q3.includes("контраст") || q3.includes("батыл")) {
+        preferences["заманауи"]++;
+    }
+
+    // Сұрақ 4
+    let q4 = document.getElementById("q4").value;
+    if (q4) preferences[q4]++;
+
+    // Сұрақ 5
+    let q5 = document.querySelector('input[name="q5"]:checked');
+    if (q5) preferences[q5.value]++;
+
+    // Сұрақ 6
+    let q6 = document.getElementById("q6").value;
+    if (q6) preferences[q6]++;
+
+    // Сұрақ 7 (текстиль бойынша талдау)
+    let q7 = document.getElementById("q7").value.toLowerCase();
+    if (q7.includes("барқыт") || q7.includes("жібек") || q7.includes("дәстүрлі")) {
+        preferences["классикалық"]++;
+    } else if (q7.includes("мақта") || q7.includes("қарапайым") || q7.includes("минимал")) {
+        preferences["минимализм"]++;
+    } else if (q7.includes("синтетика") || q7.includes("жарқын") || q7.includes("заманауи")) {
+        preferences["заманауи"]++;
+    }
+
+    // Сұрақ 8
+    let q8 = document.querySelector('input[name="q8"]:checked');
+    if (q8) preferences[q8.value]++;
+
+    // Сұрақ 9
+    let q9 = document.getElementById("q9").value;
+    if (q9) preferences[q9]++;
+
+    // Сұрақ 10 (ерекше элемент бойынша талдау)
+    let q10 = document.getElementById("q10").value.toLowerCase();
+    if (q10.includes("антик") || q10.includes("дәстүр") || q10.includes("классик")) {
+        preferences["классикалық"]++;
+    } else if (q10.includes("ештеңе") || q10.includes("қарапайым") || q10.includes("минимал")) {
+        preferences["минимализм"]++;
+    } else if (q10.includes("смарт") || q10.includes("гаджет") || q10.includes("заманауи")) {
+        preferences["заманауи"]++;
+    }
+
+    // Ең көп ұпай жинаған стильді анықтау
+    let maxScore = Math.max(preferences["классикалық"], preferences["минимализм"], preferences["заманауи"]);
+    let resultText = "Сіздің интерьер дизайны қалауыңыз: ";
+
+    if (maxScore === 0) {
+        resultText += "Қалауыңызды анықтау мүмкін болмады. Барлық сұрақтарға жауап беріңіз.";
+    } else if (maxScore === preferences["классикалық"]) {
+        resultText += "Классикалық стиль! Сіз жайлы, жылы және дәстүрлі дизайнды ұнатасыз.Осы стиль бойынша толығырақ білгіңіз келсе Chatbot AI-ден көмек сұрасаңыз болады.";
+    } else if (maxScore === preferences["минимализм"]) {
+        resultText += "Минимализм! Сіз қарапайым, функционалды және таза дизайнды қалайсыз.Осы стиль бойынша толығырақ білгіңіз келсе Chatbot AI-ден көмек сұрасаңыз болады.";
+    } else {
+        resultText += "Заманауи стиль! Сіз технологиялық, батыл және инновациялық дизайнды ұнатасыз.Осы стиль бойынша толығырақ білгіңіз келсе Chatbot AI-ден көмек сұрасаңыз болады.";
+    }
+
+    document.getElementById("result").innerText = resultText;
+}
+</script>
+
+<style>
+#result {
+    font-size: 16px; /* Кәдімгі өлшем, әдетте 16px стандартты */
+    font-weight: normal; /* Жырный емес */
+}
+</style>
+    </body>
+</html>
